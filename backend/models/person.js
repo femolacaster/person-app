@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
-let person = new Schema({
-    name: {type:string},
-    age: {type:number},
-    gender: {type:string},
-    mobile_number: {type:string}
+let Person = new Schema({
+    name: {type:String},
+    age: {type:Number},
+    gender: {type:String},
+    mobile_number: {type:String}
 },
-{collections:person});
+{collection: 'persons'});
 
-modules.exports = mongoose.model('person', person);
+module.exports = mongoose.model('Person', Person);

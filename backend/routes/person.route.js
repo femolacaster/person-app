@@ -2,10 +2,12 @@ const express = require('express');
 const app = express();
 const personRoute = express.Router();
 let Person = require('../models/Person');
+let personData = "[{}]";
 
 // Displays the list of people
 personRoute.route('/person').get((req,res,next)=>{
-    Person.find((err, data)=> {
+    console.log("Entered route");
+    Person.find((err, personData)=> {
         if(err){
             return next(err);
         }
@@ -17,7 +19,7 @@ personRoute.route('/person').get((req,res,next)=>{
 
 //Creates a single person
 personRoute.route('/person').post((req,res,next)=>{
-    Person.create(req.body, (err, data)=> {
+    Person.create(req.body, (err, personData)=> {
         if(err){
             return next(err);
         }
@@ -31,7 +33,7 @@ personRoute.route('/person').post((req,res,next)=>{
 //Updates a single person
 personRoute.route('/person/:id').put((req,res,next)=>{
     Person.findByIdAndUpdate(req.params.id, {$set : req.body},
-        (err, data)=> {
+        (err, personData)=> {
         if(err){
             return next(err);
             console.log(err);
@@ -45,7 +47,7 @@ personRoute.route('/person/:id').put((req,res,next)=>{
 
 //Deletes a single person
 personRoute.route('/person/:id').delete((req,res,next)=>{
-    Person.findOneAndRemove(req.params.id, (err, data)=> {
+    Person.findOneAndRemove(req.params.id, (err, personData)=> {
         if(err){
             return next(err);
         }
